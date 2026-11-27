@@ -1,0 +1,59 @@
+<H2> <FONT COLOR=#004080> STN32CubeIDE</H2>
+<HR><BR>
+Быстрое создание CMSIS проекта:
+<ul>
+  <li>Запускаем STN32CubeIDE/</li>
+  <li>New/STM32Project</li>
+  <li>Ставим свой контроллер</li>
+  <li>Генерация кубом нам не нужна,поэтому&nbsp;Empty и Finish.</li>
+  <li>В папку INC кидаем наши CORE и CMSIS .h файлы.</li>
+  <li>Пишем main.c. Там ставим #include "stm32f4xx.h"</li>
+  <li>В файле stm32f4xx.h раскомментируем #define stm32f407xx и сохраняем его!</li>
+  <li>При сборке утверждаем ST-LINK. Всё!</li>
+</ul>  
+<HR><BR>
+/* Тест */<br>
+#include "stm32f4xx.h"<br>
+<br>
+// Задержка в виде функции<br>
+void delay(void) {<br>
+&nbsp; for(int i = 0; i &lt; 50000*4; i++);<br>
+}<br>
+<br>
+int main(void){<br>
+&nbsp;&nbsp; &nbsp;// Настраиваем порты<br>
+&nbsp;&nbsp; &nbsp;RCC-&gt;AHB1ENR |=
+RCC_AHB1ENR_GPIODEN;<br>
+&nbsp;&nbsp; &nbsp;GPIOD-&gt;MODER |=
+GPIO_MODER_MODER12_0 |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+GPIO_MODER_MODER13_0&nbsp; | GPIO_MODER_MODER14_0 |<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+GPIO_MODER_MODER15_0;<br>
+<br>
+&nbsp;&nbsp; // Настраиваем тактирование от кварца<br>
+&nbsp;RCC-&gt;CR |= RCC_CR_CSSON | RCC_CR_HSEON;// Включаем HSE
+и CSS<br>
+&nbsp;RCC-&gt;CFGR |=
+RCC_CFGR_SW_HSE;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Переключаемся на него<br>
+<br>
+// Собственно работа программы в безконечном цикле<br>
+for(;;){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+GPIOD-&gt;BSRR |= GPIO_BSRR_BS_12;&nbsp;&nbsp; delay();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+GPIOD-&gt;BSRR |= GPIO_BSRR_BS_13;&nbsp;&nbsp; delay();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+GPIOD-&gt;BSRR |= GPIO_BSRR_BS_14;&nbsp;&nbsp; delay();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+GPIOD-&gt;BSRR |= GPIO_BSRR_BS_15;&nbsp;&nbsp; delay();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Гасим всё сразу<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+GPIOD-&gt; ODR =
+0x0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+delay();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+<br>
