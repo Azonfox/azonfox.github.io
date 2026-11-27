@@ -92,18 +92,95 @@
             .container { padding: 20px; }
             h1 { font-size: 1.7em; }
         }
+
+    .album {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .album img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+        .content-block {
+      display: flex;           /* Включает гибкое выравнивание в ряд */
+      align-items: center;     /* Выравнивает текст и фото по центру по вертикали */
+      gap: 24px;               /* Отступ между текстом и картинкой */
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .text-side {
+      flex: 1;                 /* Текст занимает всё доступное пространство слева */
+    }
+
+    .image-side {
+      width: 150px;            /* Фиксированная ширина картинки справа */
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    /* Адаптив для телефонов: на узких экранах фото уйдет под текст */
+    @media (max-width: 600px) {
+      .content-block {
+        flex-direction: column;
+      }
+      .image-side {
+        width: 100%;
+      }
+    }
+
+
+ /* Шапка с логотипом на всю ширину */
+    .header-banner {
+      width: 100%;
+      margin-bottom: 30px;     /* Отступ снизу до текста */
+      border-bottom: none !important;
+    }
+
+    .header-banner img {
+      width: 100%;             /* Растягивает картинку на всю ширину экрана */
+      max-height: 300px;       /* Ограничивает высоту, чтобы баннер не был слишком высоким */
+      object-fit: cover;       /* Аккуратно обрезает края без искажения пропорций */
+      display: block;
+    }
+
+  .divider {
+    border: none;              /* Убирает стандартную объёмную рамку */
+    height: 2px;               /* Толщина линии */
+    background-color: #cccccc; /* Цвет линии */
+    max-width: 900px;          /* Ширина линии (как у блока с текстом) */
+    margin: 30px auto;         /* Отступы сверху/снизу и выравнивание по центру */
+  }
+
     </style>
-</head>
-<body>
 
-<div class="container">
-    <header>
-        <h1>Ахрамчук Андрей</h1>
-        <p class="subtitle">Программирую с 1986 года</p>
-        <p><strong>Мои проекты и разработки. Тестовая страница</strong></p>
-    </header>
+  <!-- Верхний баннер / логотип на всю ширину -->
+  <header class="header-banner">
+    <img src="pictures/titlef.jpg" alt="Логотип сайта">
+  </header>
 
-    <section>
+  <div class="container">
+
+  <div class="content-block">
+    <div class="text-side">
+      <h1>Ахрамчук Андрей</h1>
+      <p>Мои проекты и разработки. Тестовая страница</p>
+    </div>
+    <img class="image-side" src="image/P04.jpg" alt="">
+  </div>
+
+<hr class="divider">
+
+   <section>
         <h2>Начало пути: МК-54, ПК РК86, FORTH и ассемблер 8080</h2>
         <p>Программируемый калькулятор МК-54. Участвовал в обсуждениях программ на программируемых калькуляторах в журнале Наука и жизнь. Написание расчетных программ для курсовых и домашних задач в студенческие годы. Изучение алгоритмизации и программирования в целом.</p>
         <p>Написание симулятора для этого калькулятора на языке программирования бейсик под ПК РК86.</p>
@@ -160,6 +237,19 @@
         <p>Все разработки были на языках ассемблера, микропаскале, языке С. Использовались P-CAD, SprintLayout, KiKAD, DipTrace, Specctra.</p>
         <p>Разработка и изготовление печатных плат, схемотехника и подбор-приобретение элементарной базы велась самостоятельно, в домашних условиях. Имелась полностью укомплектованная своя лаборатория с необходимыми приборами, материалами и инструментами для проведения всех работ.</p>
     </section>
+
+
+  <div class="album">
+    <img src="image/P01.jpg" alt="Фото 1">
+    <img src="image/P02.jpg" alt="Фото 2">
+    <img src="image/P03.jpg" alt="Фото 3">
+    <img src="image/P05.jpg" alt="Фото 5">
+    <img src="image/P06.jpg" alt="Фото 6">
+    <img src="image/P07.jpg" alt="Фото 7">
+    <img src="image/P08.jpg" alt="Фото 8">
+    <img src="image/P09.jpg" alt="Фото 9">
+    <img src="image/P10.jpg" alt="Фото 10">
+  </div>
 
     <section>
         <h2>Ещё немного о себе</h2>
