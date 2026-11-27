@@ -21,6 +21,7 @@
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
         }
+
         header {
             border-bottom: 2px solid #2b6cb0;
             padding-bottom: 20px;
@@ -109,7 +110,7 @@
       display: block;
     }
 
-        .content-block {
+    .content-block {
       display: flex;           /* Включает гибкое выравнивание в ряд */
       align-items: center;     /* Выравнивает текст и фото по центру по вертикали */
       gap: 24px;               /* Отступ между текстом и картинкой */
@@ -141,8 +142,10 @@
 
  /* Шапка с логотипом на всю ширину */
     .header-banner {
-      width: 100%;
-      margin-bottom: 30px;     /* Отступ снизу до текста */
+  max-width: 1000px;     /* Та же максимальная ширина, что и у текста с фото */
+  margin: 0 auto 30px;  /* Выравнивание по центру и отступ снизу */
+  padding: 0 16px;      /* Те же боковые отступы, что и у .content-block */
+  box-sizing: border-box;
       border-bottom: none !important;
     }
 
@@ -151,7 +154,9 @@
       max-height: 300px;       /* Ограничивает высоту, чтобы баннер не был слишком высоким */
       object-fit: cover;       /* Аккуратно обрезает края без искажения пропорций */
       display: block;
+  height: auto;
     }
+
 
   .divider {
     border: none;              /* Убирает стандартную объёмную рамку */
