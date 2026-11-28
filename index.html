@@ -405,16 +405,21 @@
       background: rgba(88, 166, 255, 0.3);
       color: #fff;
     }
-    .hero-photo {
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--accent);
-      box-shadow: 0 0 30px var(--accent-glow);
-      margin-bottom: 1.5rem;
-      animation: fadeUp 0.8s ease both;
-    }
+
+.hero-photo {
+  width: 260px;
+  height: 320px;                 /* выше, чем шире — вертикальный овал */
+  border-radius: 50% / 50%;      /* эллипс: по X и Y радиусы 50% */
+  object-fit: cover;
+  object-position: center 35%;   /* подгони под своё лицо: 30–45% */
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 30px var(--accent-glow);
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s ease both;
+}
+
+
+
     .album {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -427,8 +432,69 @@
       width: 100%;
       height: 200px;
       object-fit: cover;
-      border-radius: 8px;
       display: block;
+
+      /* рамка как у аватара */
+      border: 3px solid var(--accent);
+      border-radius: 8px;                     /* прямоугольник со скруглением; для овала — см. ниже */
+      box-shadow: 0 0 20px var(--accent-glow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .album img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 30px rgba(88, 166, 255, 0.45);
+    }
+
+    .video-poster {
+      position: absolute;
+      top: 0; left: 0;
+      width: 80%; height: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      overflow: hidden;
+    }
+
+    .video-poster img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(0.7);
+      /* рамка как у фото */
+      border: 3px solid var(--accent);
+      border-radius: 12px;
+      box-shadow: 0 0 20px var(--accent-glow);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .video-poster:hover img {
+      transform: scale(1.05);
+      filter: brightness(0.85);
+    }
+
+    .video-play {
+      position: relative;
+      z-index: 2;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(88, 166, 255, 0.9);
+      color: #0d1117;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 5px;
+      box-shadow: 0 0 30px rgba(88, 166, 255, 0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .video-poster:hover .video-play {
+      transform: scale(1.1);
     }
 
   </style>
@@ -706,7 +772,7 @@
     </section>
 
 
-
+    <!-- Photo album -->
   <div class="album">
     <img src="image/P01.jpg" alt="Фото 1">
     <img src="image/P02.jpg" alt="Фото 2">
@@ -719,25 +785,14 @@
     <img src="image/P10.jpg" alt="Фото 10">
   </div>
 
-
-
-
-
-
-
-
-
-
     <!-- Game on Lua -->
     <section>
       <div class="section-title">Игра на языке LUA</div>
       <div class="video-wrapper">
-        <iframe 
-          src="https://www.youtube.com/embed/60KyhK7r1AY" 
-          title="Игра на LUA" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
+        <a href="https://youtu.be/60KyhK7r1AY" target="_blank" rel="noopener" class="video-poster">
+          <img src="image/P12.png" alt="Игра на LUA — превью">
+          <span class="video-play">▶</span>
+        </a>
       </div>
     </section>
 
@@ -750,6 +805,9 @@
         </a>
         <a href="https://Azfoxprog.my.cam" target="_blank" rel="noopener" class="contact-link">
           <span class="icon">🌐</span> Azfoxprog.my.cam
+        </a>
+        <a href="https://Azfoxprog.blogspot.com" target="_blank" rel="noopener" class="contact-link">
+          <span class="icon">🌐</span> Azfoxprog.blogspot.com
         </a>
       </div>
     </section>
