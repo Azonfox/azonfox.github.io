@@ -1,323 +1,739 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ахрамчук Андрей — Программирую с 1986 года</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.65;
-            color: #222;
-            background-color: #f4f6f9;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-        }
-
-        header {
-            border-bottom: 2px solid #2b6cb0;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-        h1 {
-            margin: 0 0 8px 0;
-            font-size: 2.2em;
-            color: #1a202c;
-        }
-        .subtitle {
-            font-size: 1.2em;
-            color: #2b6cb0;
-            font-weight: 600;
-            margin: 0;
-        }
-        section {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        section:last-of-type {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-        h2 {
-            font-size: 1.35em;
-            color: #1a202c;
-            border-left: 4px solid #2b6cb0;
-            padding-left: 12px;
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-        p {
-            margin: 0 0 12px 0;
-        }
-        ul {
-            margin: 10px 0 15px 0;
-            padding-left: 22px;
-        }
-        li {
-            margin-bottom: 8px;
-        }
-        .box {
-            background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 15px 20px;
-            margin: 15px 0;
-        }
-        footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #e2e8f0;
-        }
-        a {
-            color: #2b6cb0;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .contacts a {
-            display: inline-block;
-            margin-right: 20px;
-        }
-        @media (max-width: 600px) {
-            .container { padding: 20px; }
-            h1 { font-size: 1.7em; }
-        }
-
-    .album {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 12px;
-      max-width: 1100px;
-      margin: 0 auto;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ахрамчук Андрей — Программист с 1986 года</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-card: #161b22;
+      --bg-card-hover: #1c2129;
+      --border: #30363d;
+      --text: #c9d1d9;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-glow: rgba(88, 166, 255, 0.15);
+      --accent2: #3fb950;
+      --accent3: #d29922;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono: 'JetBrains Mono', 'Fira Code', monospace;
     }
 
-    .album img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      background: radial-gradient(ellipse at 50% 0%, rgba(88, 166, 255, 0.08) 0%, transparent 60%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        linear-gradient(rgba(88, 166, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(88, 166, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.4rem 1.2rem;
+      margin-bottom: 2rem;
+      background: var(--bg-card);
+      letter-spacing: 0.05em;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 600px;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+
+    .hero-sub .highlight {
+      color: var(--accent);
+      font-family: var(--mono);
+      font-weight: 500;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: var(--mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
       display: block;
     }
 
-    .content-block {
-      display: flex;           /* Включает гибкое выравнивание в ряд */
-      align-items: center;     /* Выравнивает текст и фото по центру по вертикали */
-      gap: 24px;               /* Отступ между текстом и картинкой */
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      animation: bounce 2s infinite;
+    }
+
+    /* Sections */
+    .container {
       max-width: 900px;
       margin: 0 auto;
+      padding: 0 2rem;
     }
 
-    .text-side {
-      flex: 1;                 /* Текст занимает всё доступное пространство слева */
+    section {
+      padding: 5rem 0;
     }
 
-    .image-side {
-      width: 150px;            /* Фиксированная ширина картинки справа */
-      height: auto;
-      border-radius: 8px;
-      object-fit: cover;
+    .section-title {
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
 
-    /* Адаптив для телефонов: на узких экранах фото уйдет под текст */
-    @media (max-width: 600px) {
-      .content-block {
-        flex-direction: column;
-      }
-      .image-side {
-        width: 100%;
-      }
-    }
-
-
- /* Шапка с логотипом на всю ширину */
-    .header-banner {
-  max-width: 1000px;     /* Та же максимальная ширина, что и у текста с фото */
-  margin: 0 auto 30px;  /* Выравнивание по центру и отступ снизу */
-  padding: 0 16px;      /* Те же боковые отступы, что и у .content-block */
-  box-sizing: border-box;
-      border-bottom: none !important;
-    }
-
-    .header-banner img {
-      width: 100%;             /* Растягивает картинку на всю ширину экрана */
-      max-height: 300px;       /* Ограничивает высоту, чтобы баннер не был слишком высоким */
-      object-fit: cover;       /* Аккуратно обрезает края без искажения пропорций */
+    .section-title::before {
+      content: '';
       display: block;
-  height: auto;
+      width: 2rem;
+      height: 2px;
+      background: var(--accent);
     }
 
+    /* Cards */
+    .card-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
 
-  .divider {
-    border: none;              /* Убирает стандартную объёмную рамку */
-    height: 2px;               /* Толщина линии */
-    background-color: #cccccc; /* Цвет линии */
-    max-width: 900px;          /* Ширина линии (как у блока с текстом) */
-    margin: 30px auto;         /* Отступы сверху/снизу и выравнивание по центру */
-  }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
 
-  .text-side h1 {
-  font-size: 44px;       /* Крупный заголовок «Ахрамчук Андрей» (обычно около 32px) */
-  margin-bottom: 12px;   /* Отступ снизу до подзаголовка */
-  color: #1e3a8a;
-  }
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  .text-side p {
-  font-size: 24px;       /* Увеличенный текст «Мои проекты и разработки...» (обычно 16px) */
-  line-height: 1.4;      /* Комфортный интервал между строками */
-  }
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
+      box-shadow: 0 0 30px var(--accent-glow);
+      transform: translateY(-2px);
+    }
 
-    </style>
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
 
-  <!-- Верхний баннер / логотип на всю ширину -->
-  <header class="header-banner">
+    .card-title .icon {
+      font-size: 1.3rem;
+    }
 
- <!--  При активирования меню эту строку убрать -->
-  <img src="pictures/titlef.jpg" alt="Логотип сайта">
+    .card-meta {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent3);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.03em;
+    }
 
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
 
+    .card p + p {
+      margin-top: 0.75rem;
+    }
 
+    /* Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
 
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      background: rgba(88, 166, 255, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(88, 166, 255, 0.2);
+    }
 
-<!--   Меню для работы с сайтом и переход на другие страницы
+    .tag.green {
+      background: rgba(63, 185, 80, 0.1);
+      color: var(--accent2);
+      border-color: rgba(63, 185, 80, 0.2);
+    }
 
-<table>
-<tr>
-<td width="1000" height="127" colspan="2" align="right" valign="middle" background="./pictures/titlef.jpg">
-<h5><p align="right"><font color="#ffffff">&nbsp;</font></p></h5>
-</td>
-</tr>
-<tr>
-<td height="24" align="right" valign="middle" background="./pictures/ffot.jpg">
-<h3>
-<a href="./content/start.html"><font color="#C5D7DA"> Главная страница &nbsp;&nbsp; </font></a>
-<a href="./content/begin.html"><font color="#C5D7DA"> Введение &nbsp;&nbsp; </font></a>
-<a href="./content/stm32.html"><font color="#C5D7DA"> Курс STM32 &nbsp;&nbsp; </font></a>
-<a href="./content/cl.html"><font color="#C5D7DA"> Курс языка С &nbsp;&nbsp; </font></a>
-<a href="./content/modul.html"><font color="#C5D7DA"> Модули &nbsp;&nbsp; </font></a>
-<a href="./content/loads.html"><font color="#C5D7DA"> Скачать &nbsp;&nbsp; </font></a>
-<a href="./content/projects.html"><font color="#C5D7DA"> Проекты &nbsp;&nbsp; </font></a>
-</h3>
-</td>
-</tr>
-</table>
+    .tag.yellow {
+      background: rgba(210, 153, 34, 0.1);
+      color: var(--accent3);
+      border-color: rgba(210, 153, 34, 0.2);
+    }
 
--->
+    /* Timeline style for long section */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
 
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0.5rem;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
 
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
 
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.65rem;
+      top: 0.5rem;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .timeline-item h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-item .period {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent3);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-item p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Video */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* Contacts */
+    .contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      text-align: center;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-card);
+      transition: all 0.3s ease;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .contact-link .icon {
+      font-size: 1.2rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero-stats { gap: 2rem; }
+      .stat-num { font-size: 1.5rem; }
+      section { padding: 3rem 0; }
+      .container { padding: 0 1.25rem; }
+    }
+
+    /* Selection */
+    ::selection {
+      background: rgba(88, 166, 255, 0.3);
+      color: #fff;
+    }
+    .hero-photo {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 30px var(--accent-glow);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-badge">// programmer since 1986</div>
+      <img src="image/P11.jpg" alt="Ахрамчук Андрей" class="hero-photo">
+    <h1>Ахрамчук Андрей</h1>
+    <p class="hero-sub">
+      Программирую с <span class="highlight">1986</span> года. От программируемых калькуляторов и РК86 — до умных домов и микроконтроллеров.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">38+</span>
+        <span class="stat-label">лет опыта</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">15+</span>
+        <span class="stat-label">языков</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100+</span>
+        <span class="stat-label">проектов</span>
+      </div>
+    </div>
+    <div class="scroll-hint">↓</div>
   </header>
 
-  <div class="container">
-  <div class="content-block">
-    <div class="text-side">
-      <h1>Ахрамчук Андрей</h1>
-      <p>Мои проекты и разработки. Тестовая страница</p>
-    </div>
-    <img class="image-side" src="image/P11.jpg" alt="">
-  </div>
+  <main class="container">
 
-<hr class="divider">
-
-   <section>
-        <h2>Начало пути: МК-54, ПК РК86, FORTH и ассемблер 8080</h2>
-        <p>Программируемый калькулятор МК-54. Участвовал в обсуждениях программ на программируемых калькуляторах в журнале Наука и жизнь. Написание расчетных программ для курсовых и домашних задач в студенческие годы. Изучение алгоритмизации и программирования в целом.</p>
-        <p>Написание симулятора для этого калькулятора на языке программирования бейсик под ПК РК86.</p>
-        <p>РК86 – радиолюбительский компьютер на CPU i8080.</p>
-        <p>Имелись в наличии модели ПК Криста и МВЦ Партнер. Изучил на нем бейсик, Forth, ассемблер 8080. На бейсике созданы: электронные таблицы, программы для расчетов по курсовым работам, Анализатор игр.</p>
-        <p>Разрабатывал модули расширения для этого ПК.</p>
-        <p>Язык FORTH был изучен на уровне ассемблера 8080 и модифицировался мной несколько раз.</p>
-        <div class="box">
-            <p>На ассемблере 8080 были созданы: База данных – картотека статей журнала Радио, свой вариант языка высокого уровня СКАТ, создающий текст ассемблерного листинга для дальнейшей компиляции средствами ассемблера. Создана мини-операционная система для хранения программ на кассетном магнитофоне и работе с этими дисками на уровне файлов. Участие и отметка за оригинальность конкура DUMCOR журнала Радио. № 1992-7-23. Также были написаны с нуля игры: Змейка и Тетрис.</p>
-        </div>
-        <p>При обучении в ВУЗе мной были созданы: Показательная экспертная система определения болезней в диалоговом режиме. Был изучен паскаль ДВК и несколько диалектов бейсика, ОС Рафос - аналог DOS, ассемблер i86 и множество прикладных программ и оборудования. На ассемблере IBM PC был создан драйвер русской клавиатуры ввода и вывода.</p>
-        <p>На TurboBasic была написана и защищена на отлично дипломная работа по расчету и анализу кормления сх животных при массовых заболеваниях. Отмечена как первая дипломная работа в СССР по ветеринарии с применением программирования.</p>
-    </section>
-
+    <!-- Early years -->
     <section>
-        <h2>Программирование и администрирование (1995–2017)</h2>
-        <p>Был программистом на предприятии в системе заготовки и хранении зерна. Украина.</p>
-        <p>Самостоятельная разработка с 1995 года комплекса программного обеспечения изначально с применением электронных таблиц SuperCalk (файлы, макросы, автоматизация) с дальнейшим переводом на язык Dbase 3-4, FoxBASE, FoxPro Dos и Windows, Visual FoxPro 3-9 версий.</p>
-        <div class="box">
-            <p>Программный комплекс включал в себя Расчетное ПО по бухгалтерии, Системе расчетов и подработки зерна, Работе с клиентами и договорами, Заработной плате, работе с Пайщиками, шифрованной отчетности для проверяющих органов, небольших программ для сотрудников и обслуживающего ПО и утилиты. Документооборот выводился в Excell, WinWord, OpenOffice и стандартными средствами VFP. Была создана системы автоматического ввода данных с промышленных грузовых весов по RS232. Весь комплекс работал в сети с единой базой данных на специальном сервере под управлением Linux Slackware. В плане администрирования создана система автосохранения всех данных, почтовая система получения электронной почты предприятия и автосортировки по сотрудникам, работа с учетом Интернет (трафик предприятия был 150 мегабайт в месяц), система документооборота, различные утилиты и скрипты. Были созданы утилиты для построения интерактивной справочной системы, восстановления баз данных, учета работы пользователей в сети и многое другое. Выполнялось полное обслуживание и ремонт всей оргтехники.</p>
+      <div class="section-title">Мои проекты и разработки</div>
+      <div class="card-grid">
+
+        <div class="card">
+          <div class="card-title"><span class="icon">🧮</span> Программируемый калькулятор МК-54</div>
+          <div class="card-meta">1986 — 1990</div>
+          <p>Участвовал в обсуждениях программ на программируемых калькуляторах в журнале «Наука и жизнь». Написание расчётных программ для курсовых и домашних задач в студенческие годы. Изучение алгоритмизации и программирования в целом.</p>
+          <p>Написание симулятора для этого калькулятора на языке программирования Бейсик под ПК РК86.</p>
+          <div class="tags">
+            <span class="tag">BASIC</span>
+            <span class="tag">МК-54</span>
+            <span class="tag">алгоритмы</span>
+          </div>
         </div>
-        <p>Были созданы коммерческие продукты и зарегистрировано ЧП по их продвижению. За время этой деятельности были разработаны на заказ и внедрены программные продукты для предприятий водоканала, райсельхозснаба, районной мастерской по ремонту сх техники, крупных колхозов и совхозов, частников и фермеров, Система анализа прайслистов Excell поставщиков и автоматический их парсинг в систему учета коммерческой медицинской аптеки. Все продукты были разработаны на Visul Foxpro и имели инсталлятор и развитую интерактивную справочную систему, инструкцию по использованию и сопровождение с обучением. Был создан сайт для продвижения своих работ. Некоторые из этих продуктов работают по сей день, более 20 лет.</p>
-        <p>Для упрощения создания FORTH системы с помощью FoxPro создан автоматический генератор и тестировщик построения текстов шитого кода на языке ассемблера.</p>
-        <p>Всего под флагом Foxpro работал с 1995 по 2017 год.</p>
-    </section>
 
-    <section>
-        <h2>Системное администрирование, сервис и Web-разработка</h2>
-        <p>Как программист и системный администратор Пенсионного фонда участвовал в создании компьютерной сети (аналоговой, коаксиал) по собственной инициативе на Win3.11. Установлена сеть и соответствующее программное обеспечение. Для инспекторов и руководства созданы программы тестирования баз данных на предмет правильности ввода и актуальности данных, инструменты более простого и качественного анализа данных, фильтры построения отчетов и выборок, построении документооборота. Выполнялось полное обслуживание всей оргтехники и обучение.</p>
-        <p>В течении 4 лет самостоятельно проводил доставку, сборку и продажу ПК, телевизоров. Ремонт и обучение, обслуживание и консультации как предприятий, так и частных лиц.</p>
-        <p>В течении 6 лет работал на фирме по тестированию новых моделей и сборке ПК, ремонту, доставке и обслуживанию, обучению, установке программного обеспечения, операционных систем и драйверов. Самостоятельно разрабатывал автозапускаемые сборники утилит с меню на DVD дисках для тестирования и обслуживания ПК, автоустановки ПО, восстановления данных. Выполнял ремонт, тестирование и заправку картриджей для порошковых принтеров и ксероксов. Проводил видеомонтаж и обработку видео под заказ с перезаписью с видеокассет на DVD диски с меню. Заменял администраторов на время отпусков по работе в провайдерском интернет-центре. Проводил анализ, ремонт и сборку б\у компьютеров. Имел поощрения за рационализаторскую деятельность.</p>
-        <p>Работал системным администратором нескольких Интернет магазинов музыкального центра города. Обслуживание сети, сервера, камер видеонаблюдения и их работы в YouTube, создании и хранении архивов данных в автоматическом режиме. Как WEB программист принимал участие в улучшении внешнего вида сайтов, создании дополнительных опций, в том числе с применением сервисов GOOGLE и совместной работе с создателями движков интернет магазина. Также модифицировал интернет магазины и лендинги услуг и товаров этой фирмы. Работа велась с применением HTML, CSS, PHP, JQUERY, MySQL. Был создан минисервер для внутренних работ на основе мини ПК OrangePi PC с Linux Debian.</p>
-    </section>
-
-    <section>
-        <h2>Микроконтроллеры и электроника (с 2007 года)</h2>
-        <p>Изучал и разрабатывал проекты на микроконтроллерах с 2007 года. Создал множество макетных плат для изучения МК AVR, PIC, STM8, STM32, а также плат расширения к этим макеткам. Были и коммерческий разработки для фирмы, где работал и для своих знакомых.</p>
-        <p><strong>За все время создано:</strong></p>
-        <ul>
-            <li>Зимняя автоматика для собственной кролиководческой фермы-16 модулей автонагрева в зимний период.</li>
-            <li>FUSE доктор для разлочивания МК AVR – только плата и конструкция.</li>
-            <li>Инкубаторы разные.</li>
-            <li>Управление камерами-обманками.</li>
-            <li>Создан пакет макетных плат для построения и изучения сети из микроконтроллеров с применением радиоканала, RS485, UART и различных переходников, оптоизоляторов и прочее.</li>
-            <li>Разрабатывался и мини ПК на основе процессоров Intel 8080 и 8085 - ностальгия :)</li>
-            <li>Под заказ разработан и создан с нуля прибор для восстановления прошивок нескольких видов картриджей лазерных принтеров с индикацией и меню выбора модели принтера.</li>
-            <li>Система для экономии электроэнергии при использовании водонагревателя.</li>
-            <li>Система автоматизации работы с водоснабжением двора из обычного колодца, уровень которого понижался ниже критического в сильную жару – контроль уровня воды, набор воды в резервуары, кондиционирование кроликофермы в сильную жару, слежение за всеми уровнями, несколько режимов работы.</li>
-            <li>Создана домашняя охранная система с применение датчиков движения и герконов, камер видеонаблюдения и обманок, системы оповещения.</li>
-        </ul>
-        <div class="box">
-            <p>Разработана коммерческая система автоматизации умного дома – отопление со взамоучетом нескольких котлов, жидкостных солнечных батарей, бани, бассейна и хозяйственных построек. Несколько контуров отопления - на каждую комнату загородного особняка. Использовалось большое количество датчиков, реле, сервокранов. Как удлинитель использовался радиоканал на NRF24. Собственный протокол обмена между узлами сети на основе RS485. На DIN-рейку. Центральным узлом являлся OrangePI PC с Linux Debian и OpenHAB. Работа, обслуживание и тестирование через интренет, с локального ПК или смартфона. Дополнительно были разработаны переходники, тестовые платы, блоки питания, конвертеры и изоляторы сигналов. Система разрабатывалась с нуля под заказ.</p>
+        <div class="card">
+          <div class="card-title"><span class="icon">🖥️</span> РК86 — радиолюбительский компьютер</div>
+          <div class="card-meta">CPU i8080</div>
+          <p>Имелись в наличии модели ПК «Криста» и МВЦ «Партнёр». Изучил на нём Бейсик, Forth, ассемблер 8080. На Бейсике созданы: электронные таблицы, программы для расчётов по курсовым работам, анализатор игр. Разрабатывал модули расширения для этого ПК.</p>
+          <div class="tags">
+            <span class="tag">i8080</span>
+            <span class="tag">Forth</span>
+            <span class="tag">ассемблер</span>
+            <span class="tag green">РК86</span>
+          </div>
         </div>
-        <p>Все разработки были на языках ассемблера, микропаскале, языке С. Использовались P-CAD, SprintLayout, KiKAD, DipTrace, Specctra.</p>
-        <p>Разработка и изготовление печатных плат, схемотехника и подбор-приобретение элементарной базы велась самостоятельно, в домашних условиях. Имелась полностью укомплектованная своя лаборатория с необходимыми приборами, материалами и инструментами для проведения всех работ.</p>
-    </section>
 
-
-  <div class="album">
-    <img src="image/P01.jpg" alt="Фото 1">
-    <img src="image/P02.jpg" alt="Фото 2">
-    <img src="image/P03.jpg" alt="Фото 3">
-    <img src="image/P05.jpg" alt="Фото 5">
-    <img src="image/P06.jpg" alt="Фото 6">
-    <img src="image/P07.jpg" alt="Фото 7">
-    <img src="image/P08.jpg" alt="Фото 8">
-    <img src="image/P09.jpg" alt="Фото 9">
-    <img src="image/P10.jpg" alt="Фото 10">
-  </div>
-
-    <section>
-        <h2>Ещё немного о себе</h2>
-        <p>Игра, созданная на языке LUA:</p>
-        <p><a href="https://youtu.be/60KyhK7r1AY?si=xFK0PDg94vM2Glqn" target="_blank" rel="noopener noreferrer">https://youtu.be/60KyhK7r1AY?si=xFK0PDg94vM2Glqn</a></p>
-    </section>
-
-    <footer>
-        <div class="contacts">
-            <a href="mailto:azonfox@gmail.com">azonfox@gmail.com</a>
-     <br>   <a href="http://Azfoxprog.my.cam" target="_blank" rel="noopener noreferrer">Azfoxprog.my.cam</a>
-     <br>   <a href="https://azfoxprog.blogspot.com" target="_blank" rel="noopener noreferrer">Azfoxprog.blogspot.com</a>
-
-
-
+        <div class="card">
+          <div class="card-title"><span class="icon">📐</span> FORTH и ассемблер 8080</div>
+          <div class="card-meta">глубокое погружение</div>
+          <p>Язык FORTH был изучен на уровне ассемблера 8080 и модифицировался мной несколько раз. На ассемблере 8080 были созданы: база данных — картотека статей журнала «Радио», свой вариант языка высокого уровня СКАТ, создающий текст ассемблерного листинга для дальнейшей компиляции. Создана мини-операционная система для хранения программ на кассетном магнитофоне и работе с этими «дисками» на уровне файлов.</p>
+          <p>Участие и отметка за оригинальность конкурса DUMCOR журнала «Радио» № 1992-7-23. Также были написаны с нуля игры: «Змейка» и «Тетрис».</p>
+          <div class="tags">
+            <span class="tag">FORTH</span>
+            <span class="tag">СКАТ</span>
+            <span class="tag">DUMCOR</span>
+            <span class="tag yellow">мини-ОС</span>
+          </div>
         </div>
-    </footer>
-</div>
+
+        <div class="card">
+          <div class="card-title"><span class="icon">🎓</span> ВУЗ: экспертные системы и драйверы</div>
+          <div class="card-meta">обучение</div>
+          <p>При обучении в ВУЗе мной были созданы: показательная экспертная система определения болезней в диалоговом режиме. Был изучен Паскаль ДВК и несколько диалектов Бейсика, ОС Рафос — аналог DOS, ассемблер i86 и множество прикладных программ и оборудования. На ассемблере IBM PC был создан драйвер русской клавиатуры ввода и вывода.</p>
+          <div class="tags">
+            <span class="tag">Pascal</span>
+            <span class="tag">i86</span>
+            <span class="tag">драйвер</span>
+            <span class="tag green">экспертная система</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="icon">🐄</span> Дипломная работа на TurboBasic</div>
+          <div class="card-meta">защищена на «отлично»</div>
+          <p>На TurboBasic была написана и защищена на отлично дипломная работа по расчёту и анализу кормления сельхоз животных при массовых заболеваниях. Отмечена как первая дипломная работа в СССР по ветеринарии с применением программирования.</p>
+          <div class="tags">
+            <span class="tag">TurboBasic</span>
+            <span class="tag yellow">первая в СССР</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FoxPro era -->
+    <section>
+      <div class="section-title">Эра FoxPro · 1995 — 2017</div>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <h3>Программист на предприятии заготовки и хранения зерна</h3>
+          <div class="period">Украина</div>
+          <p>Самостоятельная разработка с 1995 года комплекса программного обеспечения: изначально с применением электронных таблиц SuperCalk (файлы, макросы, автоматизация), с дальнейшим переводом на Dbase 3-4, FoxBASE, FoxPro DOS и Windows, Visual FoxPro 3-9 версий.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Комплекс ПО для зернового предприятия</h3>
+          <div class="period">Visual FoxPro · Linux Slackware</div>
+          <p>Программный комплекс включал: расчётное ПО по бухгалтерии, системе расчётов и подработки зерна, работе с клиентами и договорами, заработной плате, работе с пайщиками, шифрованной отчётности для проверяющих органов, небольшие программы для сотрудников и обслуживающее ПО с утилитами. Документооборот выводился в Excel, WinWord, OpenOffice и стандартными средствами VFP.</p>
+          <p>Создана система автоматического ввода данных с промышленных грузовых весов по RS232. Весь комплекс работал в сети с единой базой данных на специальном сервере под управлением Linux Slackware.</p>
+          <p>В плане администрирования создана система автосохранения всех данных, почтовая система получения электронной почты предприятия и автосортировки по сотрудникам, работа с учётом Интернет (трафик предприятия был 150 МБ в месяц), система документооборота, различные утилиты и скрипты. Созданы утилиты для построения интерактивной справочной системы, восстановления баз данных, учёта работы пользователей в сети и многое другое. Выполнялось полное обслуживание и ремонт всей оргтехники.</p>
+          <div class="tags">
+            <span class="tag">VFP</span>
+            <span class="tag">RS232</span>
+            <span class="tag">Slackware</span>
+            <span class="tag green">сеть</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Коммерческие продукты и ЧП</h3>
+          <div class="period">заказные разработки</div>
+          <p>Были созданы коммерческие продукты и зарегистрировано ЧП по их продвижению. Разработаны на заказ и внедрены программные продукты для предприятий водоканала, райсельхозснаба, районной мастерской по ремонту сельхозтехники, крупных колхозов и совхозов, частников и фермеров. Система анализа прайс-листов Excel поставщиков и автоматический их парсинг в систему учёта коммерческой медицинской аптеки.</p>
+          <p>Все продукты разработаны на Visual FoxPro и имели инсталлятор и развитую интерактивную справочную систему, инструкцию по использованию и сопровождение с обучением. Был создан сайт для продвижения своих работ. Некоторые из этих продуктов работают по сей день, более 20 лет.</p>
+          <p>Для упрощения создания FORTH-системы с помощью FoxPro создан автоматический генератор и тестировщик построения текстов шитого кода на языке ассемблера.</p>
+          <div class="tags">
+            <span class="tag">VFP</span>
+            <span class="tag yellow">20+ лет в работе</span>
+            <span class="tag">парсинг</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Pension fund & hardware -->
+    <section>
+      <div class="section-title">Пенсионный фонд · сети · железо</div>
+      <div class="card-grid">
+
+        <div class="card">
+          <div class="card-title"><span class="icon">🏛️</span> Пенсионный фонд</div>
+          <div class="card-meta">системный администратор</div>
+          <p>Как программист и системный администратор Пенсионного фонда участвовал в создании компьютерной сети (аналоговой, коаксиал) по собственной инициативе на Win3.11. Установлена сеть и соответствующее программное обеспечение. Для инспекторов и руководства созданы программы тестирования баз данных на предмет правильности ввода и актуальности данных, инструменты более простого и качественного анализа данных, фильтры построения отчётов и выборок, построение документооборота. Выполнялось полное обслуживание всей оргтехники и обучение.</p>
+          <div class="tags">
+            <span class="tag">Win3.11</span>
+            <span class="tag">коаксиал</span>
+            <span class="tag green">анализ данных</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="icon">💻</span> Сборка и продажа ПК</div>
+          <div class="card-meta">4 года</div>
+          <p>В течение 4 лет самостоятельно проводил доставку, сборку и продажу ПК, телевизоров. Ремонт и обучение, обслуживание и консультации как предприятий, так и частных лиц.</p>
+          <div class="tags">
+            <span class="tag">сборка</span>
+            <span class="tag">ремонт</span>
+            <span class="tag">консалтинг</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="icon">🔧</span> Тестирование и обслуживание ПК</div>
+          <div class="card-meta">6 лет на фирме</div>
+          <p>Тестирование новых моделей и сборка ПК, ремонт, доставка и обслуживание, обучение, установка ПО, операционных систем и драйверов. Самостоятельно разрабатывал автозапускаемые сборники утилит с меню на DVD-дисках для тестирования и обслуживания ПК, автоустановки ПО, восстановления данных.</p>
+          <p>Выполнял ремонт, тестирование и заправку картриджей для порошковых принтеров и ксероксов. Проводил видеомонтаж и обработку видео под заказ с перезаписью с видеокассет на DVD-диски с меню. Заменял администраторов на время отпусков по работе в провайдерском интернет-центре. Проводил анализ, ремонт и сборку б/у компьютеров. Имел поощрения за рационализаторскую деятельность.</p>
+          <div class="tags">
+            <span class="tag">DVD-утилиты</span>
+            <span class="tag">видеомонтаж</span>
+            <span class="tag yellow">рационализатор</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="icon">🌐</span> Интернет-магазины музыкального центра</div>
+          <div class="card-meta">системный администратор · WEB</div>
+          <p>Обслуживание сети, сервера, камер видеонаблюдения и их работы в YouTube, создание и хранение архивов данных в автоматическом режиме. Как WEB-программист принимал участие в улучшении внешнего вида сайтов, создании дополнительных опций, в том числе с применением сервисов Google и совместной работе с создателями движков интернет-магазина. Также модифицировал интернет-магазины и лендинги услуг и товаров этой фирмы.</p>
+          <p>Работа велась с применением HTML, CSS, PHP, JQUERY, MySQL. Был создан мини-сервер для внутренних работ на основе мини-ПК OrangePi PC с Linux Debian.</p>
+          <div class="tags">
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">PHP</span>
+            <span class="tag">jQuery</span>
+            <span class="tag">MySQL</span>
+            <span class="tag green">OrangePi</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Microcontrollers -->
+    <section>
+      <div class="section-title">Микроконтроллеры · 2007 — настоящее время</div>
+      <div class="card-grid">
+
+        <div class="card">
+          <div class="card-title"><span class="icon">⚙️</span> Макетные платы и изучение МК</div>
+          <div class="card-meta">AVR · PIC · STM8 · STM32</div>
+          <p>Изучал и разрабатывал проекты на микроконтроллерах с 2007 года. Создал множество макетных плат для изучения МК AVR, PIC, STM8, STM32, а также плат расширения к этим макеткам. Были и коммерческие разработки для фирмы, где работал, и для своих знакомых.</p>
+          <div class="tags">
+            <span class="tag">AVR</span>
+            <span class="tag">PIC</span>
+            <span class="tag">STM8</span>
+            <span class="tag">STM32</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="icon">🐇</span> Зимняя автоматика для кролиководческой фермы</div>
+          <div class="card-meta">16 модулей автонагрева</div>
+          <p>Зимняя автоматика для собственной кролиководческой фермы — 16 модулей автонагрева в зимний период. FUSE-доктор для разлочивания МК AVR — только плата и конструкция. Инкубаторы разные. Управление камерами-обманками. Создан пакет макетных плат для построения и изучения сети из микроконтроллеров с применением радиоканала, RS485, UART и различных переходников, оптоизоляторов и прочее. Разрабатывался и мини-ПК на основе процессоров Intel 8080 и 8085 — ностальгия :)</p>
+          <div class="tags">
+            <span class="tag">RS485</span>
+            <span class="tag">UART</span>
+            <span class="tag">NRF24</span>
+            <span class="tag yellow">ностальгия</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="icon">🖨️</span> Восстановление прошивок картриджей</div>
+          <div class="card-meta">заказная разработка</div>
+          <p>Под заказ разработан и создан с нуля прибор для восстановления прошивок нескольких видов картриджей лазерных принтеров с индикацией и меню выбора модели принтера.</p>
+          <div class="tags">
+            <span class="tag green">с нуля</span>
+            <span class="tag">принтеры</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="icon">💧</span> Автоматизация водоснабжения и фермы</div>
+          <div class="card-meta">контроль уровня · кондиционирование</div>
+          <p>Система для экономии электроэнергии при использовании водонагревателя. Система автоматизации работы с водоснабжением двора из обычного колодца, уровень которого понижался ниже критического в сильную жару — контроль уровня воды, набор воды в резервуары, кондиционирование кроликофермы в сильную жару, слежение за всеми уровнями, несколько режимов работы. Создана домашняя охранная система с применением датчиков движения и герконов, камер видеонаблюдения и обманок, системы оповещения.</p>
+          <div class="tags">
+            <span class="tag">датчики</span>
+            <span class="tag">охранная система</span>
+            <span class="tag green">автоматика</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="icon">🏠</span> Коммерческая система «Умный дом»</div>
+          <div class="card-meta">отопление · солнечные батареи · бассейн</div>
+          <p>Разработана коммерческая система автоматизации умного дома — отопление со взаимоучётом нескольких котлов, жидкостных солнечных батарей, бани, бассейна и хозяйственных построек. Несколько контуров отопления — на каждую комнату загородного особняка. Использовалось большое количество датчиков, реле, сервокранов. Как удлинитель использовался радиоканал на NRF24. Собственный протокол обмена между узлами сети на основе RS485. На DIN-рейку. Центральным узлом являлся OrangePi PC с Linux Debian и OpenHAB. Работа, обслуживание и тестирование через интернет, с локального ПК или смартфона. Дополнительно были разработаны переходники, тестовые платы, блоки питания, конвертеры и изоляторы сигналов. Система разрабатывалась с нуля под заказ.</p>
+          <div class="tags">
+            <span class="tag">OpenHAB</span>
+            <span class="tag">NRF24</span>
+            <span class="tag">RS485</span>
+            <span class="tag">DIN</span>
+            <span class="tag green">с нуля</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="icon">🛠️</span> Инструменты и лаборатория</div>
+          <div class="card-meta">полный цикл</div>
+          <p>Все разработки были на языках ассемблера, микроПаскале, языке С. Использовались P-CAD, SprintLayout, KiCAD, DipTrace, Specctra. Разработка и изготовление печатных плат, схемотехника и подбор-приобретение элементной базы велась самостоятельно, в домашних условиях. Имелась полностью укомплектованная своя лаборатория с необходимыми приборами, материалами и инструментами для проведения всех работ.</p>
+          <div class="tags">
+            <span class="tag">P-CAD</span>
+            <span class="tag">KiCAD</span>
+            <span class="tag">DipTrace</span>
+            <span class="tag">С</span>
+            <span class="tag yellow">своя лаборатория</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Game on Lua -->
+    <section>
+      <div class="section-title">Игра на языке LUA</div>
+      <div class="video-wrapper">
+        <iframe 
+          src="https://www.youtube.com/embed/60KyhK7r1AY" 
+          title="Игра на LUA" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <!-- Contacts -->
+    <section>
+      <div class="section-title">Контакты</div>
+      <div class="contacts">
+        <a href="mailto:azonfox@gmail.com" class="contact-link">
+          <span class="icon">✉️</span> azonfox@gmail.com
+        </a>
+        <a href="https://Azfoxprog.my.cam" target="_blank" rel="noopener" class="contact-link">
+          <span class="icon">🌐</span> Azfoxprog.my.cam
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© Ахрамчук Андрей · Программирую с 1986 года</p>
+  </footer>
+
+  <script>
+    // Intersection Observer для анимации появления
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.card, .timeline-item').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
